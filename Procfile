@@ -1,0 +1,1 @@
+web: gunicorn Decentralized_social_media.wsgi
