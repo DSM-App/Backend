@@ -15,6 +15,7 @@ from pathlib import Path
 import os
 from datetime import timedelta
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -42,13 +43,20 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "UserProfile.apps.UserprofileConfig",
-    # "posts.apps.PostsConfig",
+    "posts.apps.PostsConfig",
     "jwtauth.apps.JwtauthConfig",
+    "blockchain.apps.BlockchainConfig",
+    "groups.apps.GroupsConfig",
+    "copyrights.apps.CopyrightsConfig",
     "rest_framework",
     "django_rest_passwordreset",
     "corsheaders",
     "rest_framework_simplejwt.token_blacklist",
     "drf_yasg",
+    "storages",
+    "django_filters",
+    "cloudinary_storage",
+    "cloudinary",
 ]
 
 MIDDLEWARE = [
@@ -189,8 +197,10 @@ CORS_ALLOWED_ORIGINS = [
 
 # Simple JWT
 
+# TODO: reset the JWT time back to 5
+
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=300),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "ROTATE_REFRESH_TOKENS": False,
     "BLACKLIST_AFTER_ROTATION": True,
@@ -215,5 +225,27 @@ SIMPLE_JWT = {
 
 # Media setup
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = "/media/"
+# MEDIA_ROT = os.path.join(BASE_DIR, "media")
+# MEDIA_URL = "https://res.cloudinary.com/dclqclfq0/raw/upload/v1/media/"
+
+# MEDIA_URL = "/media/"
+
+# media storgae to cloudnary
+
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": "dclqclfq0",
+    "API_KEY": "319847347748638",
+    "API_SECRET": "Dml1EKcKveFmtcYJiYUyKZ3DK-g",
+}
+
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.RawMediaCloudinaryStorage"
+
+
+# STATICFILES_STORAGE = "storages.backends.s3boto3.S3StaticStorage"
+
+ADMIN_MEDIA_PREFIX = "/static/admin/"
+
+# frontend url
+
+FRONTEND_URL = "https://gallant-bell-95a482.netlify.app"
+# FRONTEND_URL = "http://127.0.0.1:3000"

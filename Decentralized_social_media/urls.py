@@ -25,6 +25,10 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("users/", include("UserProfile.urls")),
     path("auth/", include("jwtauth.urls")),
+    path("posts/", include("posts.urls")),
+    path("blockchain/", include("blockchain.urls")),
+    path("groups/", include("groups.urls")),
+    path("copyrights/", include("copyrights.urls")),
     #  path('swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path(
         "swagger/",
