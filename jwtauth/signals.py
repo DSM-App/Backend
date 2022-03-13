@@ -1,3 +1,4 @@
+from Decentralized_social_media.settings import FRONTEND_URL
 from django.core.mail import EmailMultiAlternatives
 from django.dispatch import receiver
 from django.template.loader import render_to_string
@@ -5,6 +6,7 @@ from django.urls import reverse
 from django.core.mail import send_mail
 from django_rest_passwordreset.signals import reset_password_token_created
 from django.conf import settings
+
 
 """
 @receiver(reset_password_token_created)
@@ -53,12 +55,9 @@ def password_reset_token_created(
     sender, instance, reset_password_token, *args, **kwargs
 ):
 
-    email_plaintext_message = """Heyy {} \n, Please click on this link to 
-                                reset your password.".format() http://127.0.0.1:8000{}?token={}""".format(
-        reset_password_token.user.username,
-        reverse("password_reset:reset-password-request"),
-        reset_password_token.key,
-    )
+    email_plaintext_message = f"""Heyy {reset_password_token.user.username} \n, 
+                                  Please click on this link to reset your password 
+                                  {FRONTEND_URL}/password-reset?token={ reset_password_token.key}"""
 
     send_mail(
         # title:

@@ -20,6 +20,7 @@ User = get_user_model()
 
 # Register View
 @decorators.api_view(["POST"])
+@decorators.authentication_classes([])
 @decorators.permission_classes([permissions.AllowAny])
 def registration(request):
     serializer = UserCreateSerializer(data=request.data)
@@ -168,7 +169,8 @@ class VerifyEmailView(APIView):
 class LogoutView(APIView):
 
     # TODO: user should be logged in to logout, think about this.
-    permission_classes = [IsAuthenticated]
+    authentication_classes = []
+    permission_classes = [AllowAny]
 
     def post(self, request):
         try:
