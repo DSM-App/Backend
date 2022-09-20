@@ -62,5 +62,5 @@ sqlparse==0.4.1
 stone==3.2.1
 toml==0.10.2
 uritemplate==3.0.1
-urllib3==1.26.4
+urllib3==1.26.5
 whitenoise==5.2.0
